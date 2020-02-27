@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="my_old_fashioned_table" resource="default" engine="innodb" comment="My Custom Old Table! Declarative">
+        <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Old Entity ID"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="64" comment="Old Email"/>
+        <column xsi:type="int" name="some_id" padding="11" nullable="false" default="0" comment="Old Some ID"/>
+        <column xsi:type="text" name="name" nullable="true" comment="Old Name"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Car entity created at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MY_OLD_FASHIONED_TABLE_EMAIL">
+            <column name="email"/>
+        </constraint>
+    </table>
+    <table name="my_new_way_table" resource="default" engine="innodb" comment="My New Declarative Table">
+        <column xsi:type="int" name="entity_id" padding="9" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="smallint" name="user_id" padding="6" unsigned="false" nullable="false" identity="false" comment="User ID"/>
+        <column xsi:type="int" name="car_id" padding="9" unsigned="true" nullable="false" identity="false" default="0" comment="Car ID"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Car entity created at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MY_NEW_WAY_TABLE_USER_ID" table="my_new_way_table" column="user_id" referenceTable="my_old_fashioned_table" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="MY_NEW_WAY_TABLE_USER_ID_CAR_ID">
+            <column name="car_id"/>
+        </constraint>
+    </table>
+</schema>
