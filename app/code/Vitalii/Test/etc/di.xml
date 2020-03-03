@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Vitalii\Test\Api\CarCustomerRepositoryInterface"
+                type="Vitalii\Test\Model\CarCustomerRepository"/>
+    <preference for="Vitalii\Test\Api\Data\CarCustomerInterface"
+                type="Vitalii\Test\Model\CarCustomerModel"/>
+    <preference for="Vitalii\Test\Api\CarRepositoryInterface"
+                type="Vitalii\Test\Model\CarRepository"/>
+    <preference for="Vitalii\Test\Api\Data\CarInterface"
+                type="Vitalii\Test\Model\CarModel"/>
+    <preference for="Vitalii\Test\Api\CarsServiceInterface"
+                type="Vitalii\Test\Model\CarsService"/>
+
+    <preference for="Vitalii\Test\Model\CarCustomerModel" type="Vitalii\Test\Preference\Model\PreferenceModel"/>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Vitalii\Test\Api\Data\CarInterface">
+        <plugin name="car_custom_plugin" type="Vitalii\Test\Plugin\Model\CarPlugin" sortOrder="1" disabled="false" />
+    </type>
+
+    <virtualType name="My\Virtual\Type\CarRepo" type="Vitalii\Test\Model\ResourceModel\CarResource\CollectionFactory">
+    </virtualType>
+
+    <type name="Vitalii\Test\Block\Cars">
+        <arguments>
+            <argument name="carsCollectionFactory" xsi:type="object">My\Virtual\Type\CarRepo</argument>
+        </arguments>
+    </type>
+</config>
