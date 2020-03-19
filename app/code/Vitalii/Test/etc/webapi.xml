@@ -1,25 +1,49 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route url="/V1/test/cars/service" method="GET">
+    <route url="/V1/test/cars/list" method="GET">
         <service class="Vitalii\Test\Api\CarsServiceInterface" method="getCarsList"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
-    <route url="/V1/test/cars/service/:userId" method="GET">
+    <route url="/V1/test/cars/find/:userId" method="GET">
         <service class="Vitalii\Test\Api\CarsServiceInterface" method="getCarsListByUserId"/>
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/test/cars/save" method="POST">
-        <service class="Vitalii\Test\Api\CarsServiceInterface" method="save"/>
+    <route url="/V1/test/car/save" method="POST">
+        <service class="Vitalii\Test\Api\CarsServiceInterface" method="saveOrUpdate"/>
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/test/cars/save/:carId" method="DELETE">
-        <service class="Vitalii\Test\Api\CarsServiceInterface" method="delete"/>
+    <route url="/V1/test/car/delete/:carId" method="DELETE">
+        <service class="Vitalii\Test\Api\CarsServiceInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/test/customers/list" method="GET">
+        <service class="Vitalii\Test\Api\CustomersServiceInterface" method="getCustomersList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/test/customer/single/:customerId" method="GET">
+        <service class="Vitalii\Test\Api\CustomersServiceInterface" method="getCustomerById"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/test/customer/save" method="POST">
+        <service class="Vitalii\Test\Api\CustomersServiceInterface" method="saveOrUpdate"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/test/customer/delete/:customerId" method="DELETE">
+        <service class="Vitalii\Test\Api\CustomersServiceInterface" method="deleteById"/>
         <resources>
             <resource ref="anonymous" />
         </resources>

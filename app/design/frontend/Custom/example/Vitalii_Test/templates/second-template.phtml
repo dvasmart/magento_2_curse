@@ -2,6 +2,6 @@
 $blockName = $block->getNameInLayout();
 ?>
 
-<h1 class="my-second-block" data-name-in-layout="<?= $blockName ?>">My Custom Information from theme:
-    second-template.phtml! Name: <?= $blockName ?>
+<h1 class="my-second-block" data-name-in-layout="<?= $blockName ?>"><?= __('My Custom Information from theme') ?>:
+    second-template.phtml! <?= __('Name') ?>: <?= $blockName ?>
 </h1>

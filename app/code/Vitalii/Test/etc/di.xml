@@ -10,6 +10,25 @@
                 type="Vitalii\Test\Model\CarModel"/>
     <preference for="Vitalii\Test\Api\CarsServiceInterface"
                 type="Vitalii\Test\Model\CarsService"/>
+    <preference for="Vitalii\Test\Api\CustomersServiceInterface"
+                type="Vitalii\Test\Model\CustomersService"/>
 
-    <preference for="Vitalii\Test\Model\CarCustomerModel" type="Vitalii\Test\Preference\Model\PreferenceModel"/>
+    <preference for="Vitalii\Test\Model\CarCustomerModel"
+                type="Vitalii\Test\Preference\Model\PreferenceModel"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vitalii_test_listing_data_source" xsi:type="string">Vitalii\Test\Model\ResourceModel\Cars\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Vitalii\Test\Model\ResourceModel\Cars\Grid\Collection" type="Vitalii\Test\Model\ResourceModel\GridCollectionUniversal">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vitalii_cars</argument>
+            <argument name="eventPrefix" xsi:type="string">vitalii_test_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">vitalii_test_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vitalii\Test\Model\ResourceModel\CarResource</argument>
+        </arguments>
+    </virtualType>
 </config>

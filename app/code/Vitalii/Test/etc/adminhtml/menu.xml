@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vitalii_Test::vitalii" title="Cars and Customers" translate="title" module="Vitalii_Test" sortOrder="10" resource="Vitalii_Test::vitalii_main"/>
+        <add id="Vitalii_Test::vitalii_manage_customers" title="Manage Customers" translate="title" module="Vitalii_Test" sortOrder="10" parent="Vitalii_Test::vitalii" action="my_admin/customers/index" resource="Vitalii_Test::vitalii_manage_customers"/>
+        <add id="Vitalii_Test::vitalii_manage_cars" title="Manage Cars" translate="title" module="Vitalii_Test" sortOrder="20" parent="Vitalii_Test::vitalii" action="my_admin/cars/index" resource="Vitalii_Test::vitalii_manage_cars"/>
+    </menu>
+</config>

@@ -1,39 +1,46 @@
 <?php
 
+use Vitalii\Test\Api\Data\CarInterface;
+use Vitalii\Test\Block\Cars;
 use Vitalii\Test\Model\CarModel;
 use Vitalii\Test\ViewModel\ExtraInfo;
 
-/** @var \Vitalii\Test\Model\ResourceModel\CarResource\Collection $carsCollection */
-$carsCollection = $block->getCarsCollection();
-$sqlString = $carsCollection->getSelect()->__toString();
+/**
+ * @var Cars $block
+ * @var CarInterface[]|CarModel[] $cars
+ */
+$cars = $block->getCars();
+
 /** @var ExtraInfo $viewModel */
 $viewModel = $block->getData('our_view_model');
 ?>
 
 <h1 class="my-block"><?= __('My Custom Cars Collection') ?>:</h1>
-<h1 class="sql-query"><?= __('Query was') ?>:
-    <p style="color:red"><?= $sqlString ?></p>
-</h1>
-
 <?php if ($viewModel && $viewModel->getCurrentDate()): ?>
     <h3 class="my-block"><?= __('Current Date: %1', $viewModel->getCurrentDate()) ?></h3>
 <?php endif; ?>
-
 <div class="container">
-    <?php if ($carsCollection): ?>
-        <?php foreach ($carsCollection as $car): ?>
+    <?php if (!empty($cars)): ?>
+        <?php foreach ($cars as $car): ?>
             <?php /** @var CarModel $car */ ?>
             <div class="car-id-<?= $car->getId() ?>">
-                <h4 class="entity-id">EntityId: <?= $car->getId() ?></h4>
-                <h5 class="user-id">UserId: <?= $car->getUserId() ?></h5>
-                <h6 class="description">SomeId: <?= $car->getDescription() ?></h6>
-                <h6 class="car-id">CarId: <?= $car->getCarId() ?></h6>
-                <h6 class="price">Price: <?= $car->getPrice() ?></h6>
+                <h4 class="entity-id"><?= __('EntityId') ?>: <?= $car->getId() ?></h4>
+                <h5 class="user-id"><?= __('UserId') ?>: <?= $car->getUserId() ?></h5>
+                <h6 class="description"><?= __('SomeId') ?>: <?= $car->getDescription() ?></h6>
+                <h6 class="car-id"><?= __('CarId') ?>: <?= $car->getCarId() ?></h6>
+                <h6 class="price"><?= __('Price') ?>: <?= $car->getPrice() ?></h6>
                 <p class="link">
-                    <a class="go-back" href="<?= $block->getUrl('my_route') ?>">Go Back</a>
+                    <a class="go-back" href="<?= $block->getUrl('my_route') ?>"><?= __('Go Back') ?></a>
                 </p>
             </div>
             <hr>
         <?php endforeach; ?>
+    <?php else: ?>
+        <div class="message">
+            <h1 class="message-error error message"><?= __("There are no cars found for this customer.") ?></h1>
+            <p class="link">
+                <a class="go-back" href="<?= $block->getUrl('my_route') ?>"><?= __('Go Back To All Customers List') ?></a>
+            </p>
+        </div>
     <?php endif; ?>
 </div>

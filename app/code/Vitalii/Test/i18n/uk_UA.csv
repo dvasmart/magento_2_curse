@@ -1,4 +1,37 @@
-"This Is from","Це з"
-"My Custom Cars Collection","Моя власна колекція машин"
-"Query was","Запит був наступний"
-"Current Date: %1","Поточна дата %1"
+- after! 	- після!
+Before Get Description - 	Перед тим як витягнути опис -
+CarId 	Ідентифікатор Авто
+CreatedAt 	Створено в
+Compare Products 	Продукти для порівняння
+Create an Account 	Створити профіль
+Current Date: %1 	Поточна дата %1
+Default welcome msg! 	Стандартне вітальне повідомлення!
+Email 	Мило
+EntityId 	Ідентифікатор сутності
+First Item 	Перший Пункт
+FromPreference: 	З Преференсу:
+Go Back 	Повернутися назад
+Go Back To All Customers List 	Повернутися до списку всіх користувачів
+My Custom Array %1 is 	Мій власний масив %1 має назву
+My Custom Cars Collection 	Моя власна колекція машин
+My Custom Information from theme 	Моя власна інформація з теми
+My Custom Information with name 	Моя власна інформація з іменем блоку
+My Custom String is 	Моя власна строка має назву
+My Custom String 	Моя власна строка
+My Wish List 	Мій список бажань
+Name 	Ім'я
+or 	або
+Price 	Ціна
+Query was 	Запит був наступний
+Search entire store here... 	Введіть пошуковий запит тут...
+Second Item 	Другий Пункт
+See Customer Cars of %1 	Переглянути Машини Користувача %1
+Sign In 	Увійти
+SomeId 	Деякий Ідентифікатор
+There are no customer found. 	Не знайдено жодного користувача.
+There are no cars found for this customer. 	Для цього користувача автомобілів не знайдено.
+This Is from 	Це з
+UserName 	Ім'я Користувача
+UserId 	Ідентифікатор Користувача
+You have no items in your wish list. 	Ваш список бажань пустий.
+You have no items to compare. 	Ваш список для порівняння пустий.

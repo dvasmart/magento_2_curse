@@ -1,6 +1,6 @@
 <?php
 
-namespace Vitalii\Test\Controller\Index;
+namespace Vitalii\Test\Controller\Customer;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;

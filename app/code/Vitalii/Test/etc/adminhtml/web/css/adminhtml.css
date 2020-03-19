@@ -1,0 +1,5 @@
+.admin__menu .level-0.item-roma > a:before {
+    content: '';
+    background: url(../images/custom-icon.png) center center no-repeat;
+    background-size: contain;
+}

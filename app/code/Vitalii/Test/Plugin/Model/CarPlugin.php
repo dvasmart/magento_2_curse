@@ -15,7 +15,7 @@ class CarPlugin
      */
     public function beforeGetDescription(CarInterface $subject)
     {
-        echo "\r\n" . 'Before Get Decription' . "\r\n";
+        echo "\r\n" . __('Before Get Description -')->render() . "\r\n";
         return [];
     }
 
@@ -26,6 +26,6 @@ class CarPlugin
      */
     public function afterGetDescription(CarInterface $subject, $result)
     {
-        return $result . ' - after!';
+        return $result . __(' - after!')->render();
     }
 }

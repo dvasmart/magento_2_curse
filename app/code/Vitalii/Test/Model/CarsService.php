@@ -37,30 +37,62 @@ class CarsService implements CarsServiceInterface
     }
 
     /**
+     * @param int|null $userId
+     * @return SearchCriteria
+     */
+    private function getSearchCriteria($userId = null)
+    {
+        if ($userId > 0) {
+            /** @var SearchCriteria $searchCriteria */
+            $searchCriteria = $this->searchCriteriaBuilder
+                ->addFilter(CarInterface::USER_ID, $userId)
+                ->create();
+        } else {
+            /** @var SearchCriteria $searchCriteria */
+            $searchCriteria = $this->searchCriteriaBuilder->create();
+        }
+
+        return $searchCriteria;
+    }
+
+    /**
+     * @param int|null $userId
+     * @return array
+     */
+    private function composeList($userId = null)
+    {
+        $resultArray = [];
+        try {
+            /** @var SearchCriteria $searchCriteria */
+            $searchCriteria = $this->getSearchCriteria($userId);
+            /** @var SearchResultsInterface $searchResults */
+            $searchResults = $this->carRepository->getList($searchCriteria);
+            if ($searchResults->getTotalCount() > 0) {
+                foreach ($searchResults->getItems() as $item) {
+                    /** @var CarInterface $item */
+                    $resultArray[] = [
+                        'id' => $item->getId(),
+                        'car_id' => $item->getCarId(),
+                        'description' => $item->getDescription(),
+                        'user_id' => $item->getUserId(),
+                        'created_at' => $item->getCreatedAt(),
+                        'price' => $item->getPrice()
+                    ];
+                }
+            }
+        } catch (\Exception $exception) {
+            // logging
+        }
+
+        return $resultArray;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getCarsList()
     {
-        /** @var SearchCriteria $searchCriteria */
-        $searchCriteria = $this->searchCriteriaBuilder->create();
-        /** @var SearchResultsInterface $searchResults */
-        $searchResults = $this->carRepository->getList($searchCriteria);
-        $resultArray = [];
-        if ($searchResults->getTotalCount() > 0) {
-            foreach ($searchResults->getItems() as $item) {
-                /** @var CarInterface $item */
-                $resultArray[] = [
-                    'id' => $item->getId(),
-                    'car_id' => $item->getCarId(),
-                    'description' => $item->getDescription(),
-                    'user_id' => $item->getUserId(),
-                    'created_at' => $item->getCreatedAt(),
-                    'price' => $item->getPrice()
-                ];
-            }
-        }
-
-        return $resultArray;
+        return $this->composeList();
     }
 
     /**
@@ -69,37 +101,16 @@ class CarsService implements CarsServiceInterface
     public function getCarsListByUserId($userId)
     {
         if (empty($userId)) {
-            return false;
+            return [];
         }
 
-        /** @var SearchCriteria $searchCriteria */
-        $searchCriteria = $this->searchCriteriaBuilder
-            ->addFilter(CarInterface::USER_ID, $userId)
-            ->create();
-        /** @var SearchResultsInterface $searchResults */
-        $searchResults = $this->carRepository->getList($searchCriteria);
-        $resultArray = [];
-        if ($searchResults->getTotalCount() > 0) {
-            foreach ($searchResults->getItems() as $item) {
-                /** @var CarInterface $item */
-                $resultArray[] = [
-                    'id' => $item->getId(),
-                    'car_id' => $item->getCarId(),
-                    'description' => $item->getDescription(),
-                    'user_id' => $item->getUserId(),
-                    'created_at' => $item->getCreatedAt(),
-                    'price' => $item->getPrice()
-                ];
-            }
-        }
-
-        return $resultArray;
+        return $this->composeList($userId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function save(CarInterface $car)
+    public function saveOrUpdate(CarInterface $car)
     {
         try {
             $newCar = $this->carRepository->save($car);
@@ -114,7 +125,7 @@ class CarsService implements CarsServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function delete(int $carId)
+    public function deleteById(int $carId)
     {
         try {
             $this->carRepository->deleteById($carId);

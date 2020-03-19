@@ -1,0 +1,73 @@
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .my-block {
+        color: Blue;
+        font-weight: normal;
+    }
+    .my-second-block {
+        color: #f68697;
+        font-weight: bold;
+    }
+    .customers {
+        &.container {
+            position: relative;
+            #cars-container {
+                display: block;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 10;
+                width: 500px;
+                background-color: aliceblue;
+                height: 100%;
+                .cars.items {
+                    position: relative;
+                    padding: 40px 25px;
+                    .close {
+                        display: block;
+                        position: absolute;
+                        top: 40px;
+                        right: 25px;
+                        font-weight: 600;
+                        color: #cd181d;
+                    }
+                    .label {
+                        .cars-label {
+                            color: teal;
+                        }
+                    }
+                    .cars-list.wrapper {
+                        padding: 25px;
+                        ul.cars {
+                            list-style-type: none;
+                            .car {
+                                display: block;
+                                .line {
+                                    display: block;
+                                    .label, .value {
+                                        display: inline-block;
+                                    }
+                                    .label {
+                                        color: darkmagenta;
+                                    }
+                                    .value {
+                                        font-weight: 600;
+                                        color: forestgreen;
+                                    }
+                                }
+                            }
+                        }
+                        .show-more {
+                            padding-left: 40px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

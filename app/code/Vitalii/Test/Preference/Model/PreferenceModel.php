@@ -14,6 +14,6 @@ class PreferenceModel extends CarCustomerModel
      */
     public function getName()
     {
-        return 'FromPreference: ' . $this->getData(self::NAME);
+        return __('FromPreference: ')->render() . $this->getData(self::NAME);
     }
 }

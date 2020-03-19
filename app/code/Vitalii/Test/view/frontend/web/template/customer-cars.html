@@ -1,0 +1,43 @@
+
+<div class="cars items">
+    <% if (cars && Object.keys(cars).length > 0) { %>
+    <a class="close" href="#">Close</a>
+    <strong class="label">
+        <span class="cars-label"><%- userName %>'s Cars:</span>
+    </strong>
+    <div class="cars-list wrapper">
+        <ul class="cars">
+            <% _.each(cars, function(car, index) { %>
+            <% if (index > 1) { %>
+            <% return false; %>
+            <% } %>
+            <li class="car entity-id" data-code="<%- car.id %>">
+                        <span class="line car-id">
+                            <span class="label">CarId: </span>
+                            <span class="value">"<%- car.car_id %>"</span>
+                        </span>
+                <span class="line description">
+                            <span class="label">Description: </span>
+                            <span class="value">"<%- car.description %>"</span>
+                        </span>
+                <span class="line user-id">
+                            <span class="label">UserId: </span>
+                            <span class="value">"<%- car.user_id %>"</span>
+                        </span>
+                <span class="line created-at">
+                            <span class="label">CreatedAt: </span>
+                            <span class="value">"<%- car.created_at %>"</span>
+                        </span>
+                <span class="line price">
+                            <span class="label">Price: </span>
+                            <span class="value">"<%- car.price %>"</span>
+                        </span>
+            </li>
+            <% }); %>
+        </ul>
+        <% if (Object.keys(cars).length > 2) { %>
+        <a href="<%- hrefMore %>" class="show-more">Show More...</a>
+        <% } %>
+    </div>
+    <% } %>
+</div>

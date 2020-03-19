@@ -22,11 +22,11 @@ interface CarsServiceInterface
      * @param Data\CarInterface $car
      * @return mixed
      */
-    public function save(Data\CarInterface $car);
+    public function saveOrUpdate(Data\CarInterface $car);
 
     /**
      * @param int $carId
      * @return mixed
      */
-    public function delete(int $carId);
+    public function deleteById(int $carId);
 }

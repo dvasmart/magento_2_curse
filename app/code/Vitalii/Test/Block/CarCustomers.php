@@ -5,31 +5,26 @@ namespace Vitalii\Test\Block;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Api\SearchResults;
+use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Vitalii\Test\Api\Data\CarCustomerInterface;
 use Vitalii\Test\Api\CarCustomerRepositoryInterface;
-use Vitalii\Test\Model\CarCustomerModel;
-use Vitalii\Test\Model\ResourceModel\CarCustomer\Collection as CarCustomerCollection;
-use Vitalii\Test\Model\ResourceModel\CarCustomer\CollectionFactory as CarCustomerCollectionFactory;
+use Vitalii\Test\Api\Data\CarInterface;
 
 /**
  * Class CarCustomers
  */
 class CarCustomers extends Template
 {
-    /**
-     * @var CarCustomerCollectionFactory
-     */
-    private $carCustomersCollectionFactory;
+    const CARS_ACTION_ROUTE = 'my_route/customer/cars';
 
     /**
-     * @var CarCustomerCollection|null
+     * @var CarCustomerInterface[]|null
      */
-    private $carCustomersCollection;
+    private $carCustomers;
 
     /**
      * @var SearchCriteriaBuilder
@@ -48,7 +43,6 @@ class CarCustomers extends Template
 
     /**
      * @param Context $context
-     * @param CarCustomerCollectionFactory $carCustomersCollectionFactory
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param CarCustomerRepositoryInterface $carCustomerRepository
      * @param SortOrderBuilder $sortOrderBuilder
@@ -56,52 +50,71 @@ class CarCustomers extends Template
      */
     public function __construct(
         Context $context,
-        CarCustomerCollectionFactory $carCustomersCollectionFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         CarCustomerRepositoryInterface $carCustomerRepository,
         SortOrderBuilder $sortOrderBuilder,
         array $data = []
-    ) {
-    parent::__construct($context, $data);
-        $this->carCustomersCollectionFactory = $carCustomersCollectionFactory;
+    )
+    {
+        parent::__construct($context, $data);
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->carCustomerRepository = $carCustomerRepository;
         $this->sortOrderBuilder = $sortOrderBuilder;
     }
 
     /**
-     * @return Template
+     * {@inheritDoc}
      */
     protected function _prepareLayout()
     {
-        if ($this->carCustomersCollection === null) {
-            /** @var SortOrder $sortOrder */
-            $sortOrder = $this->sortOrderBuilder
-                ->setField(CarCustomerInterface::CREATED_AT)
-                ->setDirection(SortOrder::SORT_ASC)
-                ->create();
-
-            /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
-            $searchCriteria = $this->searchCriteriaBuilder
-                ->addSortOrder($sortOrder)
-                ->create();
-
-            /** @var SearchResults $searchResults */
-            $searchResults = $this->carCustomerRepository->getList($searchCriteria);
-
-//            $this->carCustomerRepository->deleteById(2);
-            if ($searchResults->getTotalCount() > 0) {
-                $this->carCustomersCollection = $searchResults->getItems();
+        if ($this->carCustomers === null) {
+            $this->carCustomers = [];
+            try {
+                /** @var SortOrder $sortOrder */
+                $sortOrder = $this->sortOrderBuilder
+                    ->setField(CarCustomerInterface::CREATED_AT)
+                    ->setDirection(SortOrder::SORT_ASC)
+                    ->create();
+                /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
+                $searchCriteria = $this->searchCriteriaBuilder
+                    ->addSortOrder($sortOrder)
+                    ->create();
+                /** @var SearchResultsInterface $searchResults */
+                $searchResults = $this->carCustomerRepository->getList($searchCriteria);
+                if ($searchResults->getTotalCount() > 0) {
+                    $this->carCustomers = $searchResults->getItems();
+                }
+            } catch (\Exception $exception) {
+                $error = $exception->getMessage();
+                $text = 'Customers loading has failed: message "%s"';
+                $message = sprintf($text, $error);
+                $this->_logger->debug($message);
             }
         }
 
         return parent::_prepareLayout();
     }
+
     /**
-     * @return CarCustomerCollection|null
+     * @return CarCustomerInterface[]|null
      */
-    public function getCarCustomersCollection()
+    public function getCarCustomers()
     {
-        return $this->carCustomersCollection;
+        return $this->carCustomers;
+    }
+
+
+    /**
+     * @param string|int $userId
+     * @return string
+     */
+    public function getCarsUrl($userId)
+    {
+        return $this->getUrl(
+            self::CARS_ACTION_ROUTE,
+            [
+                CarInterface::USER_ID => $userId
+            ]
+        );
     }
 }
