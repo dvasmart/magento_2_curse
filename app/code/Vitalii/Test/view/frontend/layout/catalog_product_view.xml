@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <container  name="cms-text-block" label="My text block" htmlTag="div" htmlClass="text_cms" after="product.info.price">
+                <block class="Magento\Cms\Block\Block" name="my_identifier_to_text_block">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">my_identifier_to_text_block</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
