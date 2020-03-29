@@ -8,8 +8,5 @@
     </virtualType>
 
     <type name="Vitalii\Test\Block\Cars">
-        <!--        <arguments>-->
-        <!--            <argument name="carsCollectionFactory" xsi:type="object">My\Virtual\Type\CarRepo</argument>-->
-        <!--        </arguments>-->
     </type>
 </config>

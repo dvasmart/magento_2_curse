@@ -51,7 +51,7 @@ class UpdateMyNewTable implements SchemaPatchInterface
     {
         $setup = $this->schemaSetup;
         $connection = $setup->getConnection();
-        $myTable = $setup->getTable('my_new_way_table');
+        $myTable = $setup->getTable('vitalii_cars');
 
         /**
          * If `my_new_way_table` table doesn't exist - do nothing

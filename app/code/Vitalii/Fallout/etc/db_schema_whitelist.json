@@ -1,0 +1,16 @@
+{
+    "fallout_pistols": {
+        "column": {
+            "entity_id": true,
+            "base_id": true,
+            "pistol_name": true,
+            "damage_per_shot": true,
+            "ammunition_used": true,
+            "weapon_value_in_caps": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FALLOUT_PISTOLS_BASE_ID": true
+        }
+    }
+}

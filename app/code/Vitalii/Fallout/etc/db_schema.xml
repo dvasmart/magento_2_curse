@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="fallout_pistols" resource="default" engine="innodb" comment="Pistols in Fallout 4">
+        <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="base_id" nullable="false" length="64" comment="Base Id"/>
+        <column xsi:type="varchar" name="pistol_name" nullable="false" length="64" comment="Pistol name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="int" name="damage_per_shot" padding="11" nullable="false" default="0" comment="Damage per shot"/>
+        <column xsi:type="varchar" name="ammunition_used" nullable="false" length="64" comment="Ammunition used"/>
+        <column xsi:type="decimal" name="weapon_value_in_caps" default="00.00" scale="4" precision="20" unsigned="false" nullable="true" comment="Weapon value in caps"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Pistol entity created at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="FALLOUT_PISTOLS_BASE_ID">
+            <column name="base_id"/>
+        </constraint>
+    </table>
+</schema>

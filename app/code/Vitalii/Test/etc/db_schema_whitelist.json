@@ -1,0 +1,30 @@
+{
+    "vitalii_customers": {
+        "column": {
+            "entity_id": true,
+            "email": true,
+            "some_id": true,
+            "name": true,
+            "created_at": true,
+            "price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "VITALII_CUSTOMERS_EMAIL": true
+        }
+    },
+    "vitalii_cars": {
+        "column": {
+            "entity_id": true,
+            "user_id": true,
+            "car_id": true,
+            "description": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "VITALII_CARS_USER_ID_VITALII_CUSTOMERS_ENTITY_ID": true,
+            "VITALII_CARS_CAR_ID": true
+        }
+    }
+}

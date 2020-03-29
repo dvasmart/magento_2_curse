@@ -262,6 +262,7 @@ return [
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
+        'Vitalii_Fallout' => 1,
         'Vitalii_Test' => 1,
         'Yotpo_Yotpo' => 1
     ],

@@ -6,7 +6,7 @@
         <column xsi:type="int" name="some_id" padding="11" nullable="false" default="0" comment="Old Some ID"/>
         <column xsi:type="text" name="name" nullable="true" comment="Old Name"/>
         <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Car entity created at"/>
-        <column xsi:type="decimal" name="price" default="00.0000" scale="4" precision="20" unsigned="false" nullable="true" comment="Base Car Price"/>
+
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
@@ -20,6 +20,7 @@
         <column xsi:type="int" name="car_id" padding="9" unsigned="true" nullable="false" identity="false" default="0" comment="Car ID"/>
         <column xsi:type="text" name="description" nullable="true" comment="Description"/>
         <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Car entity created at"/>
+        <column xsi:type="decimal" name="price" default="00.0000" scale="4" precision="20" unsigned="false" nullable="true" comment="Base Car Price"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>

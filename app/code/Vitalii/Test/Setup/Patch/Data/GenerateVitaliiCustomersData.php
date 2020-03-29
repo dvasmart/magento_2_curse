@@ -59,7 +59,7 @@ class GenerateVitaliiCustomersData implements DataPatchInterface
     public function apply()
     {
         $this->moduleDataSetup->startSetup();
-        echo 'Vitalii_Test:GenerateVitaliiCustomersData:Data:startSetup' . "\r\n";
+//        echo 'Vitalii_Test:GenerateVitaliiCustomersData:Data:startSetup' . "\r\n";
 
         try {
             $data = [
@@ -113,7 +113,7 @@ class GenerateVitaliiCustomersData implements DataPatchInterface
         }
 
         $this->moduleDataSetup->endSetup();
-        echo 'Vitalii_Test:GenerateVitaliiCustomersData:Data:endSetup' . "\r\n";
+//        echo 'Vitalii_Test:GenerateVitaliiCustomersData:Data:endSetup' . "\r\n";
     }
 
     /**
