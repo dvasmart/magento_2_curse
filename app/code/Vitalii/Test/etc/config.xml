@@ -4,6 +4,7 @@
         <vitalii_test>
             <settings>
                 <use_ajax>1</use_ajax>
+                <massage_cms_block>1</massage_cms_block>
             </settings>
         </vitalii_test>
     </default>
