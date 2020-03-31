@@ -66,16 +66,8 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                                     <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                                 </a>
                             </strong>
-                            <?php
-                            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                            $config = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('roma_stalker/settings_image/show_happy_block');
-                            ?>
-                            <?php if($config):?>
-                                <?= $this->getLayout()
-                                    ->createBlock('Magento\Cms\Block\Block')
-                                    ->setBlockId('my_block')
-                                    ->toHtml();?>
-                            <?php endif;?>
+
+                            <?= $block->getChildHtml('my_cms_block'); ?>
 
                             <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                             <?= /* @noEscape */ $block->getProductPrice($_product) ?>

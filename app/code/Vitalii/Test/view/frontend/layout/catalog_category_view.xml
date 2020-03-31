@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="content">
-            <block class="Magento\Cms\Block\Block" name="my_block" ifconfig="vitalii_test/settings/massage_cms_block"  after="-">
+        <referenceContainer name="category.product.list">
+            <block class="Magento\Cms\Block\Block" name="my.cms.block" as="my_cms_block" ifconfig="vitalii_test/settings/massage_cms_block"  >
                 <arguments>
                     <argument name="block_id" xsi:type="string">my_block</argument>
                 </arguments>

@@ -55,12 +55,9 @@ class MyCMSBlock implements DataPatchInterface
         $data = [
             'title' => 'Message for CMS block',
             'identifier' => 'my_block',
-            'stores' => ['0'],
+            'stores' => [0, 1, 2, 3],
             'is_active' => 1,
-            'content' => '<div class="cms-plp-page">
-                            <div class="message_for_cms_block">My Hello message for cms block</div>
-                          </div>
-            ',
+            'content' => '<p>My Hello message for cms block</p>',
         ];
         try {
             $this->blockFactory->create()->setData($data)->save();
