@@ -1,10 +1,11 @@
 <?php
 
-namespace Vitalii\Test\Model\ResourceModel\CarResource;
+
+namespace Vitalii\Exam\Model\ResourceModel\FruitResource;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Vitalii\Test\Model\CarModel;
-use Vitalii\Test\Model\ResourceModel\FruitResource as CarResourceModel;
+use Vitalii\Exam\Model\FruitModel;
+use Vitalii\Exam\Model\ResourceModel\FruitResource as FruitResourceModel;
 
 /**
  * Class Collection
@@ -14,7 +15,7 @@ class Collection extends AbstractCollection
     /**
      * {@inheritdoc}
      */
-    protected $_idFieldName = CarModel::ENTITY_ID;
+    protected $_idFieldName = FruitModel::ENTITY_ID;
 
     /**
      * {@inheritdoc}
@@ -22,8 +23,8 @@ class Collection extends AbstractCollection
     protected function _construct()
     {
         $this->_init(
-            CarModel::class,
-            CarResourceModel::class
+            FruitModel::class,
+            FruitResourceModel::class
         );
     }
 }

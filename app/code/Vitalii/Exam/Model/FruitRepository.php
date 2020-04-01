@@ -1,6 +1,7 @@
 <?php
 
-namespace Vitalii\Test\Model;
+
+namespace Vitalii\Exam\Model;
 
 use Magento\Framework\Api\SearchResults;
 use Magento\Framework\Api\SearchResultsInterface;
@@ -10,27 +11,27 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Vitalii\Test\Api\CarRepositoryInterface;
-use Vitalii\Test\Api\Data\CarInterface;
-use Vitalii\Test\Model\CarModelFactory;
-use Vitalii\Test\Model\ResourceModel\CarResource\Collection;
-use Vitalii\Test\Model\ResourceModel\CarResource\CollectionFactory as CarCollectionFactory;
-use Vitalii\Test\Model\ResourceModel\FruitResource;
+use Vitalii\Exam\Api\FruitRepositoryInterface;
+use Vitalii\Exam\Api\Data\FruitInterface;
+use Vitalii\Exam\Model\FruitModelFactory;
+use Vitalii\Exam\Model\ResourceModel\FruitResource\Collection;
+use Vitalii\Exam\Model\ResourceModel\FruitResource\CollectionFactory as FruitCollectionFactory;
+use Vitalii\Exam\Model\ResourceModel\FruitResource;
 
 /**
- * Class CarRepository
+ * Class FruitRepository
  */
-class CarRepository implements CarRepositoryInterface
+class FruitRepository implements FruitRepositoryInterface
 {
     /**
-     * @var CarCustomerModelFactory
+     * @var FruitModelFactory
      */
-    private $carFactory;
+    private $fruitFactory;
 
     /**
-     * @var CarCollectionFactory
+     * @var FruitCollectionFactory
      */
-    private $carCollectionFactory;
+    private $fruitCollectionFactory;
 
     /**
      * @var FruitResource
@@ -48,21 +49,21 @@ class CarRepository implements CarRepositoryInterface
     private $collectionProcessor;
 
     /**
-     * @param CarModelFactory $carFactory
-     * @param CarCollectionFactory $carCollectionFactory
+     * @param FruitModelFactory $fruitFactory
+     * @param FruitCollectionFactory $fruitCollectionFactory
      * @param FruitResource $resource
      * @param SearchResultsInterfaceFactory $searchResultsFactory
      * @param CollectionProcessorInterface $collectionProcessor
      */
     public function __construct(
-        CarModelFactory $carFactory,
-        CarCollectionFactory $carCollectionFactory,
+        FruitModelFactory $fruitFactory,
+        FruitCollectionFactory $fruitCollectionFactory,
         FruitResource $resource,
         SearchResultsInterfaceFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
     ) {
-        $this->carFactory = $carFactory;
-        $this->carCollectionFactory = $carCollectionFactory;
+        $this->fruitFactory = $fruitFactory;
+        $this->fruitCollectionFactory = $fruitCollectionFactory;
         $this->resource = $resource;
         $this->searchResultsFactory = $searchResultsFactory;
         $this->collectionProcessor = $collectionProcessor;
@@ -71,31 +72,31 @@ class CarRepository implements CarRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function save(CarInterface $car): CarInterface
+    public function save(FruitInterface $fruit): FruitInterface
     {
         try {
-            /** @var CarModel|CarInterface $car */
-            $this->resource->save($car);
+            /** @var FruitModel|FruitInterface $fruit */
+            $this->resource->save($fruit);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
 
-        return $car;
+        return $fruit;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getById(int $carId): CarInterface
+    public function getById(int $fruitId): FruitInterface
     {
-        /** @var CarModel|CarInterface $car */
-        $car = $this->carFactory->create();
-        $car->load($carId);
-        if (!$car->getId()) {
-            throw new NoSuchEntityException(__('Car entity with id `%1` does not exist.', $carId));
+        /** @var FruitModel|FruitInterface $fruit */
+        $fruit = $this->fruitFactory->create();
+        $fruit->load($fruitId);
+        if (!$fruit->getId()) {
+            throw new NoSuchEntityException(__('Fruit entity with id `%1` does not exist.', $fruitId));
         }
 
-        return $car;
+        return $fruit;
     }
 
     /**
@@ -104,7 +105,7 @@ class CarRepository implements CarRepositoryInterface
     public function getList(SearchCriteriaInterface $criteria): SearchResults
     {
         /** @var Collection $collection */
-        $collection = $this->carCollectionFactory->create();
+        $collection = $this->fruitCollectionFactory->create();
         $this->collectionProcessor->process($criteria, $collection);
 
         /** @var SearchResults $searchResults */
@@ -118,11 +119,11 @@ class CarRepository implements CarRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function delete(CarInterface $car): bool
+    public function delete(FruitInterface $fruit): bool
     {
         try {
-            /** @var CarModel $car */
-            $this->resource->delete($car);
+            /** @var FruitModel $fruit */
+            $this->resource->delete($fruit);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
@@ -133,8 +134,8 @@ class CarRepository implements CarRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteById(int $carId): bool
+    public function deleteById(int $fruitId): bool
     {
-        return $this->delete($this->getById($carId));
+        return $this->delete($this->getById($fruitId));
     }
 }
