@@ -3,6 +3,7 @@
     <table name="exam_main_table" resource="default" engine="innodb" comment="Table with main fruit entities">
         <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
         <column xsi:type="varchar" name="fruit_name" nullable="false" length="64" comment="Fruit name"/>
+        <column xsi:type="varchar" name="color_id" nullable="false" length="64" comment="Color Id"/>
         <column xsi:type="text" name="description" nullable="true" comment="Fruit Description"/>
         <column xsi:type="int" name="weight" padding="11" nullable="false" default="0" comment="Fruit Weight"/>
         <column xsi:type="varchar" name="taste" nullable="false" length="64" comment="Fruit taste"/>
@@ -11,22 +12,21 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
+        <constraint xsi:type="foreign" referenceId="EXAM_MAIN_TABLE_COLOR_ID" table="exam_main_table" column="color_id" referenceTable="exam_secondary_table" referenceColumn="color_name" onDelete="CASCADE"/>
         <constraint xsi:type="unique" referenceId="EXAM_MAIN_TABLE_FRUIT_NAME">
             <column name="fruit_name"/>
         </constraint>
     </table>
-    <table name="exam_secondary_table" resource="default" engine="innodb" comment="Table with secondary entities">
+    <table name="exam_secondary_table" resource="default" engine="innodb" comment="Table with secondary color entities">
         <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
-        <column xsi:type="varchar" name="colour_name" nullable="false" length="64" comment="Сolour Name"/>
-        <column xsi:type="varchar" name="fruit_id" nullable="false" length="64" comment="Fruit ID"/>
-        <column xsi:type="text" name="description" nullable="true" comment="Сolour Description"/>
-        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Сolour entity created at"/>
+        <column xsi:type="varchar" name="color_name" nullable="false" length="64" comment="Color Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Color Description"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Color entity created at"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="EXAM_SECONDARY_TABLE_FRUIT_ID" table="exam_secondary_table" column="fruit_id" referenceTable="exam_main_table" referenceColumn="fruit_name" onDelete="CASCADE"/>
-        <constraint xsi:type="unique" referenceId="EXAM_SECONDARY_TABLE_COLOUR_NAME">
-            <column name="colour_name"/>
+        <constraint xsi:type="unique" referenceId="EXAM_SECONDARY_TABLE_COLOR_NAME">
+            <column name="color_name"/>
         </constraint>
     </table>
 </schema>

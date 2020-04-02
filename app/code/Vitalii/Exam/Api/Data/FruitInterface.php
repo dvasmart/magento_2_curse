@@ -12,6 +12,8 @@ interface FruitInterface
 
     const FRUIT_NAME = 'fruit_name';
 
+    const COLOR_ID = 'color_id';
+
     const DESCRIPTION = 'description';
 
     const WEIGHT = 'weight';
@@ -35,6 +37,13 @@ interface FruitInterface
      * @return string
      */
     public function getFruitName();
+
+    /**
+     * Get color id
+     *
+     * @return string
+     */
+    public function getColorId();
 
     /**
      * Get fruit description
@@ -67,7 +76,7 @@ interface FruitInterface
     /**
      * Get created at date
      *
-     * @return mixed
+     * @return string
      */
     public function getCreatedAt();
 
@@ -80,7 +89,7 @@ interface FruitInterface
     public function setId($id);
 
     /**
-     * Set user id
+     * Set fruit name
      *
      * @param string $fruitName
      * @return FruitInterface
@@ -88,7 +97,15 @@ interface FruitInterface
     public function setFruitName(string $fruitName): FruitInterface;
 
     /**
-     * Set fruit id
+     * Set color id
+     *
+     * @param string $colorId
+     * @return FruitInterface
+     */
+    public function setColorId(string $colorId): FruitInterface;
+
+    /**
+     * Set fruit description
      *
      * @param string $description
      * @return FruitInterface
@@ -96,7 +113,7 @@ interface FruitInterface
     public function setDescription(string $description): FruitInterface;
 
     /**
-     * Set fruit description
+     * Set fruit weight
      *
      * @param int $weight
      * @return FruitInterface
@@ -104,7 +121,7 @@ interface FruitInterface
     public function setWeight(int $weight): FruitInterface;
 
     /**
-     * Set fruit description
+     * Set fruit taste
      *
      * @param string $taste
      * @return FruitInterface

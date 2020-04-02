@@ -39,6 +39,14 @@ class FruitModel extends AbstractModel implements FruitInterface
     /**
      * {@inheritdoc}
      */
+    public function getColorId()
+    {
+        return (string)$this->getData(self::COLOR_ID);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getDescription()
     {
         return (string)$this->getData(self::DESCRIPTION);
@@ -90,6 +98,14 @@ class FruitModel extends AbstractModel implements FruitInterface
     public function setFruitName(string $fruitName): FruitInterface
     {
         return $this->setData(self::FRUIT_NAME, $fruitName);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setColorId(string $colorId): FruitInterface
+    {
+        return $this->setData(self::COLOR_ID, $colorId);
     }
 
     /**

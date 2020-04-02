@@ -5,4 +5,8 @@
                 type="Vitalii\Exam\Model\FruitRepository"/>
     <preference for="Vitalii\Exam\Api\Data\FruitInterface"
                 type="Vitalii\Exam\Model\FruitModel"/>
+    <preference for="Vitalii\Exam\Api\ColorRepositoryInterface"
+                type="Vitalii\Exam\Model\ColorRepository"/>
+    <preference for="Vitalii\Exam\Api\Data\ColorInterface"
+                type="Vitalii\Exam\Model\ColorModel"/>
 </config>
