@@ -12,7 +12,7 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="EXAM_MAIN_TABLE_COLOR_ID" table="exam_main_table" column="color_id" referenceTable="exam_secondary_table" referenceColumn="color_name" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="EXAM_MAIN_TABLE_COLOR_ID_EXAM_SECONDARY_TABLE_COLOR_NAME" table="exam_main_table" column="color_id" referenceTable="exam_secondary_table" referenceColumn="color_name" onDelete="CASCADE"/>
         <constraint xsi:type="unique" referenceId="EXAM_MAIN_TABLE_FRUIT_NAME">
             <column name="fruit_name"/>
         </constraint>

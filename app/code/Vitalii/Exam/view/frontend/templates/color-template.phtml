@@ -1,0 +1,40 @@
+<?php
+
+
+use Vitalii\Exam\Api\Data\ColorInterface;
+use Vitalii\Exam\Block\Colors;
+use Vitalii\Exam\Model\ColorModel;
+
+/** @var ColorInterface[] $colors */
+$colors = $block->getColors();
+?>
+
+<table>
+    <tr>
+        <th class="entity-id">Entity Id</th>
+        <th class="color-name">Color Name</th>
+        <th class="description">Description</th>
+        <th class="created-at">Created At</th>
+        <th class="link">Link</th>
+    </tr>
+    <?php if (!empty($colors)): ?>
+        <?php foreach ($colors as $color): ?>
+                <tr>
+                        <td><?php echo $color->getId() ?></td>
+                        <td><?php echo $color->getColorName() ?></td>
+                        <td><?php echo $color->getDescription() ?></td>
+                        <td><?php echo $color->getCreatedAt() ?></td>
+                        <td>
+                            <?php $href = $block->getFruitsUrl($color->getColorName()); ?>
+                            <a  href="<?= $href ?>">
+                                <?= __('See Fruits with %1 color', $color->getColorName()) ?>
+                            </a>
+                        </td>
+                      </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="message">
+            <h1 class="message-error error message"><?= __("There are no colors found.") ?></h1>
+        </div>
+    <?php endif; ?>
+</table>

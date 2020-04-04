@@ -5,36 +5,12 @@ use Vitalii\Exam\Api\Data\FruitInterface;
 use Vitalii\Exam\Block\Fruits;
 use Vitalii\Exam\Model\FruitModel;
 
-/** @var FruitInterface[] $fruits */
+/**
+ * @var Fruits $block
+ * @var FruitInterface[]|FruitModel[] $fruits
+ */
 $fruits = $block->getFruits();
 ?>
-
-<!--<div class="fruits">-->
-<!--    --><?php //if (!empty($fruits)): ?>
-<!--        --><?php //foreach ($fruits as $fruit): ?>
-<!--        --><?php ///** @var $FruitModel $fruit */ ?>
-<!--            <p class="entity-id">--><?//= __('Entity Id') ?><!--: --><?//= $fruit->getId() ?><!--</p>-->
-<!--            <p class="fruit-name">--><?//= __('Name') ?><!--: --><?//= $fruit->getFruitName() ?><!--</p>-->
-<!--            <p class="color-id">--><?//= __('Color') ?><!--: --><?//= $fruit->getColorId() ?><!--</p>-->
-<!--            <p class="description">--><?//= __('Description') ?><!--: --><?//= $fruit->getDescription() ?><!--</p>-->
-<!--            <p class="weight">--><?//= __('Weight') ?><!--: --><?//= $fruit->getWeight() ?><!--</p>-->
-<!--            <p class="taste">--><?//= __('Taste') ?><!--: --><?//= $fruit->getTaste() ?><!--</p>-->
-<!--            <p class="price">--><?//= __('Price') ?><!--: --><?//= $fruit->getPrice() ?><!--</p>-->
-<!--            <p class="created-at">--><?//= __('Created At') ?><!--: --><?//= $fruit->getCreatedAt() ?><!--</p>-->
-<!--        </div>-->
-<!--    --><?php //endforeach; ?>
-<!--    --><?php //else: ?>
-<!--        <div class="message">-->
-<!--            <h1 class="message-error error message">--><?//= __("There are no fruits found.") ?><!--</h1>-->
-<!--        </div>-->
-<!--    --><?php //endif; ?>
-<!--</div>-->
-
-<!--<style>-->
-<!--    table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}-->
-<!--    td, th {  border: 1px solid #dddddd;  text-align: left;  padding: 8px;  }-->
-<!--    tr:nth-child(even) { background-color: #dddddd; }-->
-<!--</style>-->
 
 <table>
     <tr>
@@ -46,28 +22,30 @@ $fruits = $block->getFruits();
         <th class="taste">Taste</th>
         <th class="price">Price</th>
         <th class="created-at">Created At</th>
+        <th class="link">Link</th>
     </tr>
     <?php if (!empty($fruits)): ?>
-        <?php
-            foreach ($fruits as $fruit){
-                echo '<tr>
-                        <td>'.$fruit->getId().'</td>
-                        <td>'.$fruit->getFruitName().'</td>
-                        <td>'.$fruit->getColorId().'</td>
-                        <td>'.$fruit->getDescription().'</td>
-                        <td>'.$fruit->getWeight().'</td>
-                        <td>'.$fruit->getTaste().'</td>
-                        <td>'.$fruit->getPrice().'</td>
-                        <td>'.$fruit->getCreatedAt().'</td>
-                      </tr>';
-            }
-        ?>
+        <?php foreach ($fruits as $fruit): ?>
+                    <tr>
+                        <td><?php echo $fruit->getId() ?></td>
+                        <td><?php echo $fruit->getFruitName() ?></td>
+                        <td><?php echo $fruit->getColorId() ?></td>
+                        <td><?php echo $fruit->getDescription() ?></td>
+                        <td><?php echo $fruit->getWeight() ?></td>
+                        <td><?php echo $fruit->getTaste() ?></td>
+                        <td><?php echo $fruit->getPrice() ?></td>
+                        <td><?php echo $fruit->getCreatedAt() ?></td>
+                        <td>
+                            <?php $href = $block->getUrl('exam_route'); ?>
+                            <a  href="<?= $href ?>">
+                                <?= __('Go Back'); ?>
+                            </a>
+                        </td>
+                      </tr>
+        <?php endforeach; ?>
     <?php else: ?>
         <div class="message">
             <h1 class="message-error error message"><?= __("There are no fruits found.") ?></h1>
         </div>
     <?php endif; ?>
 </table>
-
-<!--</body>-->
-<!--</html>-->

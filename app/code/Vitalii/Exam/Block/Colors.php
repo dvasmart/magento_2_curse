@@ -9,21 +9,23 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SortOrderBuilder;
-use Magento\Framework\App\Request\Http;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Vitalii\Exam\Api\FruitRepositoryInterface;
+use Vitalii\Exam\Api\Data\ColorInterface;
+use Vitalii\Exam\Api\ColorRepositoryInterface;
 use Vitalii\Exam\Api\Data\FruitInterface;
 
 /**
- * Class Fruits
+ * Class Colors
  */
-class Fruits extends Template
+class Colors extends Template
 {
+    const FRUITS_ACTION_ROUTE = 'exam_route/color/fruits';
+
     /**
-     * @var FruitRepositoryInterface
+     * @var ColorInterface[]|null
      */
-    private $fruitRepository;
+    private $colors;
 
     /**
      * @var SearchCriteriaBuilder
@@ -31,32 +33,33 @@ class Fruits extends Template
     private $searchCriteriaBuilder;
 
     /**
+     * @var ColorRepositoryInterface
+     */
+    private $colorRepository;
+
+    /**
      * @var SortOrderBuilder
      */
     private $sortOrderBuilder;
 
     /**
-     * @var FruitInterface[]|null
-     */
-    private $fruits;
-
-    /**
      * @param Context $context
-     * @param FruitRepositoryInterface $fruitRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param ColorRepositoryInterface $colorRepository
      * @param SortOrderBuilder $sortOrderBuilder
      * @param array $data
      */
     public function __construct(
         Context $context,
-        FruitRepositoryInterface $fruitRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
+        ColorRepositoryInterface $colorRepository,
         SortOrderBuilder $sortOrderBuilder,
         array $data = []
-    ) {
+    )
+    {
         parent::__construct($context, $data);
-        $this->fruitRepository = $fruitRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->colorRepository = $colorRepository;
         $this->sortOrderBuilder = $sortOrderBuilder;
     }
 
@@ -65,30 +68,26 @@ class Fruits extends Template
      */
     protected function _prepareLayout()
     {
-        /** @var Http $request */
-        $request = $this->getRequest();
-        $colorId = (string)$request->getParam(FruitInterface::COLOR_ID);
-        if (!empty($colorId)) {
-            $this->fruits = [];
+        if ($this->colors === null) {
+            $this->colors = [];
             try {
                 /** @var SortOrder $sortOrder */
                 $sortOrder = $this->sortOrderBuilder
-                    ->setField(FruitInterface::ENTITY_ID)
+                    ->setField(ColorInterface::ENTITY_ID)
                     ->setDirection(SortOrder::SORT_ASC)
                     ->create();
                 /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
                 $searchCriteria = $this->searchCriteriaBuilder
-                    ->addFilter(FruitInterface::COLOR_ID, $colorId)
                     ->addSortOrder($sortOrder)
                     ->create();
                 /** @var SearchResultsInterface $searchResults */
-                $searchResults = $this->fruitRepository->getList($searchCriteria);
+                $searchResults = $this->colorRepository->getList($searchCriteria);
                 if ($searchResults->getTotalCount() > 0) {
-                    $this->fruits = $searchResults->getItems();
+                    $this->colors = $searchResults->getItems();
                 }
             } catch (\Exception $exception) {
                 $error = $exception->getMessage();
-                $text = 'Fruits loading has failed: message "%s"';
+                $text = 'Colors loading has failed: message "%s"';
                 $message = sprintf($text, $error);
                 $this->_logger->debug($message);
             }
@@ -98,10 +97,24 @@ class Fruits extends Template
     }
 
     /**
-     * @return FruitInterface[]
+     * @return ColorInterface[]|null
      */
-    public function getFruits()
+    public function getColors()
     {
-        return $this->fruits;
+        return $this->colors;
+    }
+
+    /**
+     * @param string $colorId
+     * @return string
+     */
+    public function getFruitsUrl($colorId)
+    {
+        return $this->getUrl(
+            self::FRUITS_ACTION_ROUTE,
+            [
+                FruitInterface::COLOR_ID => $colorId
+            ]
+        );
     }
 }

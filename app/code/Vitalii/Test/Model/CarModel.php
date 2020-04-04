@@ -4,7 +4,7 @@ namespace Vitalii\Test\Model;
 
 use Magento\Framework\Model\AbstractModel;
 use Vitalii\Test\Api\Data\CarInterface;
-use Vitalii\Test\Model\ResourceModel\FruitResource as CarResourceModel;
+use Vitalii\Test\Model\ResourceModel\CarResource as CarResourceModel;
 
 /**
  * Class CarModel

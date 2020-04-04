@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Vitalii\Exam\Block\Colors" name="color.block" template="Vitalii_Exam::color-template.phtml">
+            <block class="Vitalii\Exam\Block\Fruits" name="fruit.block" template="Vitalii_Exam::fruit-template.phtml">
 
             </block>
         </referenceContainer>

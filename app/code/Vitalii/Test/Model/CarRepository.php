@@ -15,7 +15,7 @@ use Vitalii\Test\Api\Data\CarInterface;
 use Vitalii\Test\Model\CarModelFactory;
 use Vitalii\Test\Model\ResourceModel\CarResource\Collection;
 use Vitalii\Test\Model\ResourceModel\CarResource\CollectionFactory as CarCollectionFactory;
-use Vitalii\Test\Model\ResourceModel\FruitResource;
+use Vitalii\Test\Model\ResourceModel\CarResource;
 
 /**
  * Class CarRepository
@@ -33,7 +33,7 @@ class CarRepository implements CarRepositoryInterface
     private $carCollectionFactory;
 
     /**
-     * @var FruitResource
+     * @var CarResource
      */
     private $resource;
 
@@ -50,14 +50,14 @@ class CarRepository implements CarRepositoryInterface
     /**
      * @param CarModelFactory $carFactory
      * @param CarCollectionFactory $carCollectionFactory
-     * @param FruitResource $resource
+     * @param CarResource $resource
      * @param SearchResultsInterfaceFactory $searchResultsFactory
      * @param CollectionProcessorInterface $collectionProcessor
      */
     public function __construct(
         CarModelFactory $carFactory,
         CarCollectionFactory $carCollectionFactory,
-        FruitResource $resource,
+        CarResource $resource,
         SearchResultsInterfaceFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
     ) {
