@@ -4,9 +4,17 @@
 use Vitalii\Exam\Api\Data\ColorInterface;
 use Vitalii\Exam\Block\Colors;
 use Vitalii\Exam\Model\ColorModel;
+use Vitalii\Exam\ViewModel\GetConfig;
 
 /** @var ColorInterface[] $colors */
 $colors = $block->getColors();
+
+/** @var GetConfig $numberColors */
+$numberColors = $block->getData('colors_number');
+
+$colorsValue = $numberColors->getColorsNumber();
+
+$i=1;
 ?>
 
 <table>
@@ -19,6 +27,7 @@ $colors = $block->getColors();
     </tr>
     <?php if (!empty($colors)): ?>
         <?php foreach ($colors as $color): ?>
+            <?php if ($i <= $colorsValue): ?>
                 <tr>
                         <td><?php echo $color->getId() ?></td>
                         <td><?php echo $color->getColorName() ?></td>
@@ -31,6 +40,8 @@ $colors = $block->getColors();
                             </a>
                         </td>
                       </tr>
+            <?php $i++; ?>
+            <?php endif; ?>
         <?php endforeach; ?>
     <?php else: ?>
         <div class="message">

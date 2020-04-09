@@ -35,6 +35,10 @@ class Index extends Action
      */
     public function execute()
     {
+//        $resultPage = $this->resultPageFactory->create();
+//        $resultPage->getConfig()->getTitle()->set(__('Custom Pagination'));
+//        return $resultPage;
+
         return $this->resultPageFactory->create();
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="colors_number" translate="label" sortOrder="40">
+            <label>Colors Value Table</label>
+        </tab>
+        <section id="fruits_colors_config" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Colors Value</label>
+            <tab>colors_number</tab>
+            <resource>Vitalii_Exam::colors_number</resource>
+            <group id="settings_input" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Number of colors</label>
+                <field id="number_of_colors" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>How many colors from table display on page</label>
+                    <validate>validate-number required-entry validate-length minimum-length-1</validate>
+                    <comment>This field sets number of colors that will be shown on page</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

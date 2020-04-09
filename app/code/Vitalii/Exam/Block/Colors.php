@@ -96,6 +96,7 @@ class Colors extends Template
         return parent::_prepareLayout();
     }
 
+
     /**
      * @return ColorInterface[]|null
      */

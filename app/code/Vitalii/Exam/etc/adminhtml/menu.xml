@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vitalii_Exam::colors_number" title="Set Number of Colors" module="Vitalii_Exam" sortOrder="30" resource="Vitalii_Exam::colors_number_main"/>
+    </menu>
+</config>
