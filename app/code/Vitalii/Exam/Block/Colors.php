@@ -11,9 +11,10 @@ use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Vitalii\Exam\Api\Data\ColorInterface;
 use Vitalii\Exam\Api\ColorRepositoryInterface;
+use Vitalii\Exam\Api\Data\ColorInterface;
 use Vitalii\Exam\Api\Data\FruitInterface;
+use Vitalii\Exam\Model\ColorModel;
 
 /**
  * Class Colors
@@ -68,20 +69,31 @@ class Colors extends Template
      */
     protected function _prepareLayout()
     {
+        $sortDirection = (int)$this->getRequest()
+            ->getParam(ColorModel::SORT_DIRECTION);
         if ($this->colors === null) {
             $this->colors = [];
             try {
                 /** @var SortOrder $sortOrder */
-                $sortOrder = $this->sortOrderBuilder
-                    ->setField(ColorInterface::ENTITY_ID)
-                    ->setDirection(SortOrder::SORT_ASC)
-                    ->create();
+                if($sortDirection !== 1) {
+                    $sortOrder = $this->sortOrderBuilder
+                        ->setField(ColorInterface::COLOR_NAME)
+                        ->setDirection(SortOrder::SORT_ASC)
+                        ->create();
+                }
+                else{
+                    $sortOrder = $this->sortOrderBuilder
+                        ->setField(ColorInterface::COLOR_NAME)
+                        ->setDirection(SortOrder::SORT_DESC)
+                        ->create();
+                }
                 /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
                 $searchCriteria = $this->searchCriteriaBuilder
                     ->addSortOrder($sortOrder)
                     ->create();
                 /** @var SearchResultsInterface $searchResults */
-                $searchResults = $this->colorRepository->getList($searchCriteria);
+                $searchResults = $this->colorRepository
+                    ->getList($searchCriteria);
                 if ($searchResults->getTotalCount() > 0) {
                     $this->colors = $searchResults->getItems();
                 }
@@ -92,10 +104,8 @@ class Colors extends Template
                 $this->_logger->debug($message);
             }
         }
-
         return parent::_prepareLayout();
     }
-
 
     /**
      * @return ColorInterface[]|null
@@ -103,6 +113,20 @@ class Colors extends Template
     public function getColors()
     {
         return $this->colors;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortDirection()
+    {
+        $direction = (int)$this->getRequest()
+            ->getParam(ColorModel::SORT_DIRECTION);
+        if ($direction === 1)
+        {
+            return 0;
+        }
+        else return 1;
     }
 
     /**

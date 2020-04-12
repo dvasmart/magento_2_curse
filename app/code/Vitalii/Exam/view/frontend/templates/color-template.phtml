@@ -16,7 +16,11 @@ $colorsValue = $numberColors->getColorsNumber();
 
 $i=1;
 ?>
-
+<p>To change number of shown colors go to Admin panel->Stores->Settings->Configuration->Colors Value Table->Colors Value
+    and set how many colors will be shown on this page</p>
+<a href="<?= $block->getUrl('exam_route', ['sort_direction' => $block->getSortDirection()]); ?>">
+    <?= __("Sort by color name")?>
+</a>
 <table>
     <tr>
         <th class="entity-id">Entity Id</th>
@@ -34,9 +38,8 @@ $i=1;
                         <td><?php echo $color->getDescription() ?></td>
                         <td><?php echo $color->getCreatedAt() ?></td>
                         <td>
-                            <?php $href = $block->getFruitsUrl($color->getColorName()); ?>
-                            <a  href="<?= $href ?>">
-                                <?= __('See Fruits with %1 color', $color->getColorName()) ?>
+                            <a  href="<?= $block->getFruitsUrl($color->getColorName()); ?>">
+                                <?= __('See Fruits with %1 color', $color->getColorName()); ?>
                             </a>
                         </td>
                       </tr>
@@ -45,7 +48,9 @@ $i=1;
         <?php endforeach; ?>
     <?php else: ?>
         <div class="message">
-            <h1 class="message-error error message"><?= __("There are no colors found.") ?></h1>
+            <h1 class="message-error error message">
+                <?= __("There are no colors shown on this page.") ?>
+            </h1>
         </div>
     <?php endif; ?>
 </table>

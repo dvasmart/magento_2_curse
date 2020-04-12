@@ -16,6 +16,8 @@ interface ColorInterface
 
     const CREATED_AT = 'created_at';
 
+    const SORT_DIRECTION = 'sort_direction';
+
     /**
      * Get entity id
      *
