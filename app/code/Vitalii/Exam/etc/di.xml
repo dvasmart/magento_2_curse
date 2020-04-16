@@ -9,4 +9,35 @@
                 type="Vitalii\Exam\Model\ColorRepository"/>
     <preference for="Vitalii\Exam\Api\Data\ColorInterface"
                 type="Vitalii\Exam\Model\ColorModel"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vitalii_exam_color_listing_data_source" xsi:type="string">Vitalii\Exam\Model\ResourceModel\Colors\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Vitalii\Exam\Model\ResourceModel\Colors\Grid\Collection" type="Vitalii\Exam\Model\ResourceModel\GridCollectionColors">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">exam_secondary_table</argument>
+            <argument name="eventPrefix" xsi:type="string">vitalii_exam_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">vitalii_exam_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vitalii\Exam\Model\ResourceModel\ColorResource</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vitalii_exam_fruit_listing_data_source" xsi:type="string">Vitalii\Exam\Model\ResourceModel\Fruits\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Vitalii\Exam\Model\ResourceModel\Fruits\Grid\Collection" type="Vitalii\Exam\Model\ResourceModel\GridCollectionFruits">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">exam_main_table</argument>
+            <argument name="eventPrefix" xsi:type="string">vitalii_exam_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">vitalii_exam_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Vitalii\Exam\Model\ResourceModel\FruitResource</argument>
+        </arguments>
+    </virtualType>
 </config>

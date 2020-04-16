@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Vitalii_Exam::fruits_and_colors" title="Fruits and Colors" sortOrder="10">
+                    <resource id="Vitalii_Exam::manage_colors" title="Manage Colors" sortOrder="20"/>
+                    <resource id="Vitalii_Exam::manage_fruits" title="Manage Fruits" sortOrder="30" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Vitalii_Exam::fruits_and_colors_main" title="Fruits and Colors Main"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

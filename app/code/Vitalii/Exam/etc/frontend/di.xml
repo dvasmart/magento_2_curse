@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Vitalii\Exam\Api\Data\ColorInterface">
+        <plugin name="color_get_description_plugin" type="Vitalii\Exam\Plugin\Model\ColorPlugin" sortOrder="10" disabled="false" />
+    </type>
+    <type name="Vitalii\Exam\Api\Data\FruitInterface">
+        <plugin name="fruit_get_description_plugin" type="Vitalii\Exam\Plugin\Model\FruitPlugin" sortOrder="20" disabled="false" />
+    </type>
+</config>

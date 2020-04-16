@@ -2,6 +2,8 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Vitalii_Exam::colors_number" title="Set Number of Colors" module="Vitalii_Exam" sortOrder="30" resource="Vitalii_Exam::colors_number_main"/>
+        <add id="Vitalii_Exam::fruits_and_colors" title="Fruits and Colors" module="Vitalii_Exam" sortOrder="10" resource="Vitalii_Exam::fruits_and_colors"/>
+        <add id="Vitalii_Exam::manage_colors" title="Manage Colors" module="Vitalii_Exam" sortOrder="20" resource="Vitalii_Exam::manage_colors" parent="Vitalii_Exam::fruits_and_colors" action="exam_admin/color/index" />
+        <add id="Vitalii_Exam::manage_fruits" title="Manage Fruits" module="Vitalii_Exam" sortOrder="30" resource="Vitalii_Exam::manage_fruits" parent="Vitalii_Exam::fruits_and_colors" action="exam_admin/fruit/index"   />
     </menu>
 </config>

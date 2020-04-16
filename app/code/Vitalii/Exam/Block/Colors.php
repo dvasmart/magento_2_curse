@@ -15,6 +15,7 @@ use Vitalii\Exam\Api\ColorRepositoryInterface;
 use Vitalii\Exam\Api\Data\ColorInterface;
 use Vitalii\Exam\Api\Data\FruitInterface;
 use Vitalii\Exam\Model\ColorModel;
+use Magento\Framework\Event\Manager as EventManager;
 
 /**
  * Class Colors
@@ -44,24 +45,33 @@ class Colors extends Template
     private $sortOrderBuilder;
 
     /**
+     * @var EventManager
+     */
+    private $eventManager;
+
+    /**
      * @param Context $context
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param ColorRepositoryInterface $colorRepository
      * @param SortOrderBuilder $sortOrderBuilder
      * @param array $data
+     * @param EventManager $eventManager
      */
     public function __construct(
         Context $context,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         ColorRepositoryInterface $colorRepository,
         SortOrderBuilder $sortOrderBuilder,
+        EventManager $eventManager,
         array $data = []
+
     )
     {
         parent::__construct($context, $data);
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->colorRepository = $colorRepository;
         $this->sortOrderBuilder = $sortOrderBuilder;
+        $this->eventManager = $eventManager;
     }
 
     /**
@@ -124,9 +134,15 @@ class Colors extends Template
             ->getParam(ColorModel::SORT_DIRECTION);
         if ($direction === 1)
         {
+
+            $this->eventManager->dispatch('sort_colors_by_asc');
             return 0;
         }
-        else return 1;
+        else
+        {
+            $this->eventManager->dispatch('sort_colors_by_desc');
+            return 1;
+        }
     }
 
     /**
@@ -135,6 +151,7 @@ class Colors extends Template
      */
     public function getFruitsUrl($colorId)
     {
+        $this->eventManager->dispatch('color_link_click');
         return $this->getUrl(
             self::FRUITS_ACTION_ROUTE,
             [
