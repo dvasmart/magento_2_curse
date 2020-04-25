@@ -2,4 +2,8 @@
 
 use \Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Vitalii_Exam', __DIR__);
+ComponentRegistrar::register(
+    ComponentRegistrar::MODULE,
+    'Vitalii_Exam',
+    __DIR__
+);

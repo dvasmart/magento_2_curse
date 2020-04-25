@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Controller\Adminhtml\Fruit;
 
 use Magento\Backend\App\Action as BackendAction;

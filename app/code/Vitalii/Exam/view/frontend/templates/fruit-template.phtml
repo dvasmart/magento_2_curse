@@ -1,6 +1,5 @@
 <?php
 
-
 use Vitalii\Exam\Api\Data\FruitInterface;
 use Vitalii\Exam\Block\Fruits;
 use Vitalii\Exam\Model\FruitModel;
@@ -10,6 +9,21 @@ use Vitalii\Exam\Model\FruitModel;
  * @var FruitInterface[]|FruitModel[] $fruits
  */
 $fruits = $block->getFruits();
+
+/**
+ * Форматування коду!
+ *
+ * Рекомендації:
+ *
+ * 1. Замість `<?php echo '';?>` використовувати скорочену конструкцію `<?= '';?>`;
+ * 2. Текст (там де це можливо) огорнути в Phrase об'єкт: __('');
+ * 3. Відформатувати відступи
+ * 4. Переробити логіку так, щоб не використовувати $i змінну для фільтрації
+ * кільскості записів, витягнутих з таблиці. Пояснення: якщо буде 10000000 записів,
+ * то в такому разі ти витягуєш усю ту громіздку колекцію масивним запитом зараз,
+ * а потім фільтруєш по кількості. Рекомендація: краще обмежити об'єм колекції на
+ * етапі запиту до БД, а саме - добавити фільтр.
+ */
 ?>
 
 <table>
@@ -36,7 +50,12 @@ $fruits = $block->getFruits();
                         <td><?php echo $fruit->getPrice() ?></td>
                         <td><?php echo $fruit->getCreatedAt() ?></td>
                         <td>
-                            <?php $href = $block->getUrl('exam_route'); ?>
+                            <?php
+                            /**
+                             * Тут можна і без виносу в окрему змінну
+                             */
+                            $href = $block->getUrl('exam_route');
+                            ?>
                             <a  href="<?= $href ?>">
                                 <?= __('Go Back'); ?>
                             </a>

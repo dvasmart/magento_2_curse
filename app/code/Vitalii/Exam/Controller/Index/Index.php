@@ -35,6 +35,9 @@ class Index extends Action
      */
     public function execute()
     {
+        /**
+         * Ніякого закоментованого коду в гіті не повинно бути
+         */
 //        $resultPage = $this->resultPageFactory->create();
 //        $resultPage->getConfig()->getTitle()->set(__('Custom Pagination'));
 //        return $resultPage;

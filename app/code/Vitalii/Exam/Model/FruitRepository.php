@@ -1,10 +1,17 @@
 <?php
 
-
 namespace Vitalii\Exam\Model;
 
 use Magento\Framework\Api\SearchResults;
+
+/**
+ * Рекомендації:
+ *
+ * Всі класи/інтерфейси в use повинні бути відсортованими по алфавіту.
+ * Всі невикористовувані в коді класи повинні бути видаленими з use.
+ */
 use Magento\Framework\Api\SearchResultsInterface;
+
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;

@@ -9,6 +9,12 @@ use Vitalii\Exam\Model\ResourceModel\FruitResource\Collection as FruitsCollectio
 
 /**
  * Collection for displaying grid
+ *
+ * Рекомендації:
+ *
+ * 1. Повиносити всі повні назви класів в use;
+ * 2. В Doc блоках до методів використовувати {@inheritDoc} там, де є наслідування
+ * або імплементація
  */
 class GridCollectionFruits extends FruitsCollection implements SearchResultInterface
 {

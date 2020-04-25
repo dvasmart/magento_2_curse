@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Controller\Color;
 
 use Magento\Framework\App\Action\Action;

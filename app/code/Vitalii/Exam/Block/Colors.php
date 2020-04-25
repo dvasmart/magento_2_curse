@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Block;
 
 use Magento\Framework\Api\SearchCriteria;
@@ -64,9 +63,7 @@ class Colors extends Template
         SortOrderBuilder $sortOrderBuilder,
         EventManager $eventManager,
         array $data = []
-
-    )
-    {
+    ) {
         parent::__construct($context, $data);
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->colorRepository = $colorRepository;
@@ -114,6 +111,7 @@ class Colors extends Template
                 $this->_logger->debug($message);
             }
         }
+
         return parent::_prepareLayout();
     }
 
@@ -132,6 +130,10 @@ class Colors extends Template
     {
         $direction = (int)$this->getRequest()
             ->getParam(ColorModel::SORT_DIRECTION);
+
+        /**
+         * Форматування коду!
+         */
         if ($direction === 1)
         {
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -46,8 +45,7 @@ class CreateColorsData implements DataPatchInterface
         ColorInterfaceFactory $colorFactory,
         ColorRepositoryInterface $colorRepository,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->colorFactory = $colorFactory;
         $this->colorRepository = $colorRepository;

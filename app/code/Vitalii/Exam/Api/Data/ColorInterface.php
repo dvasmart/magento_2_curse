@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Api\Data;
 
 /**

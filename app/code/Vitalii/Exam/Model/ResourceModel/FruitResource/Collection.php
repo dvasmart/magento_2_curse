@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Model\ResourceModel\FruitResource;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;

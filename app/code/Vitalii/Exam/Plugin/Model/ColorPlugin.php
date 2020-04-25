@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Plugin\Model;
 
 use Vitalii\Exam\Api\Data\ColorInterface;

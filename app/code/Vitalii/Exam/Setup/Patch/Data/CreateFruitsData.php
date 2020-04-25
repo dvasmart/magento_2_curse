@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -46,8 +45,7 @@ class CreateFruitsData implements DataPatchInterface
         FruitInterfaceFactory $fruitFactory,
         FruitRepositoryInterface $fruitRepository,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->fruitFactory = $fruitFactory;
         $this->fruitRepository = $fruitRepository;

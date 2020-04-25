@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Model\ResourceModel;
 
 use Magento\Framework\Api\Search\SearchResultInterface;
@@ -9,6 +8,12 @@ use Vitalii\Exam\Model\ResourceModel\ColorResource\Collection as ColorsCollectio
 
 /**
  * Collection for displaying grid
+ *
+ * Рекомендації:
+ *
+ * 1. Повиносити всі повні назви класів в use;
+ * 2. В Doc блоках до методів використовувати {@inheritDoc} там, де є наслідування
+ * або імплементація
  */
 class GridCollectionColors extends ColorsCollection implements SearchResultInterface
 {

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Model;
 
 use Magento\Framework\Model\AbstractModel;
@@ -77,6 +76,12 @@ class ColorModel extends AbstractModel implements ColorInterface
     }
 
     /**
+     * В даному методі може бути викинуте виключення, рекомендації:
+     *
+     * 1. Або добавити @throws (а тут тип виключення) в опис до інтерфейсу;
+     * 2. Або огорнути в try/catch при цьому дотримуючись повернення правильного
+     * типу даних
+     *
      * {@inheritdoc}
      */
     public function setCreatedAt(string $createdAt): ColorInterface

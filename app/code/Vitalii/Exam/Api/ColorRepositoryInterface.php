@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;

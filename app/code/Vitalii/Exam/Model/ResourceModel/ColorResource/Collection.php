@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\Model\ResourceModel\ColorResource;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;

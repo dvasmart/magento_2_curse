@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vitalii\Exam\ViewModel;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -10,6 +9,11 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Class GetConfig
+ *
+ * Рекомендації:
+ *
+ * 1. Не створювати змінні в класі на "льоту", в даному випадку - $logger;
+ *
  */
 class GetConfig implements ArgumentInterface
 {
@@ -43,6 +47,7 @@ class GetConfig implements ArgumentInterface
         } catch (\Exception $exception) {
             $this->logger->debug('Cannot print number of colors, message: "'. $exception->getMessage() . '"');
         }
+
         return (int)$number;
     }
 }
