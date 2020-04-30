@@ -5,15 +5,9 @@ namespace Vitalii\Exam\ViewModel;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\ScopeInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class GetConfig
- *
- * Рекомендації:
- *
- * 1. Не створювати змінні в класі на "льоту", в даному випадку - $logger;
- *
  */
 class GetConfig implements ArgumentInterface
 {
@@ -26,14 +20,11 @@ class GetConfig implements ArgumentInterface
 
     /**
      * @param ScopeConfigInterface $scopeConfig
-     * @param LoggerInterface $logger
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig,
-        LoggerInterface $logger
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->logger = $logger;
     }
 
     /**
@@ -41,13 +32,6 @@ class GetConfig implements ArgumentInterface
      */
     public function getColorsNumber()
     {
-        $number = 1;
-        try {
-            $number = $this->scopeConfig->getValue(self::COLORS_NUMBER, ScopeInterface::SCOPE_STORES);
-        } catch (\Exception $exception) {
-            $this->logger->debug('Cannot print number of colors, message: "'. $exception->getMessage() . '"');
-        }
-
-        return (int)$number;
+        return (int)$this->scopeConfig->getValue(self::COLORS_NUMBER, ScopeInterface::SCOPE_STORES);
     }
 }

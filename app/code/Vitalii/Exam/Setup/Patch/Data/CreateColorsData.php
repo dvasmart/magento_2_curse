@@ -4,10 +4,10 @@ namespace Vitalii\Exam\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Psr\Log\LoggerInterface;
 use Vitalii\Exam\Api\ColorRepositoryInterface;
 use Vitalii\Exam\Api\Data\ColorInterface;
 use Vitalii\Exam\Api\Data\ColorInterfaceFactory;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class CreateColorsData

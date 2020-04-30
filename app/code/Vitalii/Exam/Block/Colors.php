@@ -8,13 +8,14 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SortOrderBuilder;
+use Magento\Framework\Event\Manager as EventManager;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Vitalii\Exam\Api\ColorRepositoryInterface;
 use Vitalii\Exam\Api\Data\ColorInterface;
 use Vitalii\Exam\Api\Data\FruitInterface;
 use Vitalii\Exam\Model\ColorModel;
-use Magento\Framework\Event\Manager as EventManager;
+use Vitalii\Exam\ViewModel\GetConfig;
 
 /**
  * Class Colors
@@ -49,12 +50,18 @@ class Colors extends Template
     private $eventManager;
 
     /**
+     * @var GetConfig
+     */
+    private $colorNumber;
+
+    /**
      * @param Context $context
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param ColorRepositoryInterface $colorRepository
      * @param SortOrderBuilder $sortOrderBuilder
      * @param array $data
      * @param EventManager $eventManager
+     * @param GetConfig $colorNumber
      */
     public function __construct(
         Context $context,
@@ -62,6 +69,7 @@ class Colors extends Template
         ColorRepositoryInterface $colorRepository,
         SortOrderBuilder $sortOrderBuilder,
         EventManager $eventManager,
+        GetConfig $colorNumber,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -69,6 +77,7 @@ class Colors extends Template
         $this->colorRepository = $colorRepository;
         $this->sortOrderBuilder = $sortOrderBuilder;
         $this->eventManager = $eventManager;
+        $this->colorNumber = $colorNumber;
     }
 
     /**
@@ -82,13 +91,12 @@ class Colors extends Template
             $this->colors = [];
             try {
                 /** @var SortOrder $sortOrder */
-                if($sortDirection !== 1) {
+                if ($sortDirection !== 1) {
                     $sortOrder = $this->sortOrderBuilder
                         ->setField(ColorInterface::COLOR_NAME)
                         ->setDirection(SortOrder::SORT_ASC)
                         ->create();
-                }
-                else{
+                } else {
                     $sortOrder = $this->sortOrderBuilder
                         ->setField(ColorInterface::COLOR_NAME)
                         ->setDirection(SortOrder::SORT_DESC)
@@ -97,6 +105,7 @@ class Colors extends Template
                 /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
                 $searchCriteria = $this->searchCriteriaBuilder
                     ->addSortOrder($sortOrder)
+                    ->setPageSize($this->colorNumber->getColorsNumber())
                     ->create();
                 /** @var SearchResultsInterface $searchResults */
                 $searchResults = $this->colorRepository
@@ -128,21 +137,15 @@ class Colors extends Template
      */
     public function getSortDirection()
     {
-        $direction = (int)$this->getRequest()
-            ->getParam(ColorModel::SORT_DIRECTION);
+        $direction = (int)$this->getRequest()->getParam(ColorModel::SORT_DIRECTION);
 
-        /**
-         * Форматування коду!
-         */
-        if ($direction === 1)
-        {
-
+        if ($direction === 1) {
             $this->eventManager->dispatch('sort_colors_by_asc');
+
             return 0;
-        }
-        else
-        {
+        } else {
             $this->eventManager->dispatch('sort_colors_by_desc');
+
             return 1;
         }
     }

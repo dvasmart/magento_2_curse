@@ -1,86 +1,76 @@
 <?php
 
-/**
- * Рекомендації:
- *
- * Всі класи/інтерфейси в use повинні бути відсортованими по алфавіту.
- * Всі невикористовувані в коді класи повинні бути видаленими з use.
- */
 use Vitalii\Exam\Api\Data\ColorInterface;
-
-/**
- * Не бачу, що за блок, конкретно цей блок для цього темплейту, як наслідок
- * шторм не підсвічує мені методи: getColors() і getSortDirection()
- */
 use Vitalii\Exam\Block\Colors;
 
 /**
- * Теж саме стосується і цієї моделі, рекомендую добавити Doc блок із зазначеням
- * цим класів відповідним змінним
+ * @var ColorInterface[] $colors
+ * @var Colors $block
  */
-use Vitalii\Exam\Model\ColorModel;
-
-
-use Vitalii\Exam\ViewModel\GetConfig;
-
-/** @var ColorInterface[] $colors */
 $colors = $block->getColors();
 
-/** @var GetConfig $numberColors */
-$numberColors = $block->getData('colors_number');
-
-$colorsValue = $numberColors->getColorsNumber();
-/**
- * Форматування коду!
- *
- * Рекомендації:
- *
- * 1. Замість `<?php echo '';?>` використовувати скорочену конструкцію `<?= '';?>`;
- * 2. Текст (там де це можливо) огорнути в Phrase об'єкт: __('');
- * 3. Відформатувати відступи
- * 4. Переробити логіку так, щоб не використовувати $i змінну для фільтрації
- * кільскості записів, витягнутих з таблиці. Пояснення: якщо буде 10000000 записів,
- * то в такому разі ти витягуєш усю ту громіздку колекцію масивним запитом зараз,
- * а потім фільтруєш по кількості. Рекомендація: краще обмежити об'єм колекції на
- * етапі запиту до БД, а саме - добавити фільтр.
- */
-$i=1;
 ?>
-<p>To change number of shown colors go to Admin panel->Stores->Settings->Configuration->Colors Value Table->Colors Value
-    and set how many colors will be shown on this page</p>
+
+<p>
+    <?= __("To change number of shown colors go to Admin panel -> Stores -> Settings -> Configuration -> Colors Value
+    Table -> Colors Value and set how many colors will be shown on this page"); ?>
+</p>
+
 <a href="<?= $block->getUrl('exam_route', ['sort_direction' => $block->getSortDirection()]); ?>">
-    <?= __("Sort by color name")?>
+    <?= __("Sort by color name"); ?>
 </a>
+
 <table>
+
     <tr>
-        <th class="entity-id">Entity Id</th>
-        <th class="color-name">Color Name</th>
-        <th class="description">Description</th>
-        <th class="created-at">Created At</th>
-        <th class="link">Link</th>
+        <th class="entity-id">
+            <?= __("Entity Id"); ?>
+        </th>
+        <th class="color-name">
+            <?= __("Color Name"); ?>
+        </th>
+        <th class="description">
+            <?= __("Description"); ?>
+        </th>
+        <th class="created-at">
+            <?= __("Created At"); ?>
+        </th>
+        <th class="link">
+            <?= __("Link"); ?>
+        </th>
     </tr>
+
     <?php if (!empty($colors)): ?>
+
         <?php foreach ($colors as $color): ?>
-            <?php if ($i <= $colorsValue): ?>
-                <tr>
-                        <td><?php echo $color->getId() ?></td>
-                        <td><?php echo $color->getColorName() ?></td>
-                        <td><?php echo $color->getDescription() ?></td>
-                        <td><?php echo $color->getCreatedAt() ?></td>
-                        <td>
-                            <a  href="<?= $block->getFruitsUrl($color->getColorName()); ?>">
-                                <?= __('See Fruits with %1 color', $color->getColorName()); ?>
-                            </a>
-                        </td>
-                      </tr>
-            <?php $i++; ?>
-            <?php endif; ?>
+            <tr>
+                <td>
+                    <?= $color->getId(); ?>
+                </td>
+                <td>
+                    <?= $color->getColorName(); ?>
+                </td>
+                <td>
+                    <?= $color->getDescription(); ?>
+                </td>
+                <td>
+                    <?= $color->getCreatedAt(); ?>
+                </td>
+                <td>
+                    <a  href="<?= $block->getFruitsUrl($color->getColorName()); ?>">
+                        <?= __('See Fruits with %1 color', $color->getColorName()); ?>
+                    </a>
+                </td>
+            </tr>
         <?php endforeach; ?>
+
     <?php else: ?>
         <div class="message">
             <h1 class="message-error error message">
-                <?= __("There are no colors shown on this page.") ?>
+                <?= __("There are no colors shown on this page."); ?>
             </h1>
         </div>
+
     <?php endif; ?>
+
 </table>

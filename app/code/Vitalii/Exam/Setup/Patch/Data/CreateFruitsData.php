@@ -4,10 +4,10 @@ namespace Vitalii\Exam\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Psr\Log\LoggerInterface;
 use Vitalii\Exam\Api\FruitRepositoryInterface;
 use Vitalii\Exam\Api\Data\FruitInterface;
 use Vitalii\Exam\Api\Data\FruitInterfaceFactory;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class CreateFruitsData

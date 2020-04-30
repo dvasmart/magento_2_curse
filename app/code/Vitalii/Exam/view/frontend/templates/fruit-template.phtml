@@ -10,61 +10,83 @@ use Vitalii\Exam\Model\FruitModel;
  */
 $fruits = $block->getFruits();
 
-/**
- * Форматування коду!
- *
- * Рекомендації:
- *
- * 1. Замість `<?php echo '';?>` використовувати скорочену конструкцію `<?= '';?>`;
- * 2. Текст (там де це можливо) огорнути в Phrase об'єкт: __('');
- * 3. Відформатувати відступи
- * 4. Переробити логіку так, щоб не використовувати $i змінну для фільтрації
- * кільскості записів, витягнутих з таблиці. Пояснення: якщо буде 10000000 записів,
- * то в такому разі ти витягуєш усю ту громіздку колекцію масивним запитом зараз,
- * а потім фільтруєш по кількості. Рекомендація: краще обмежити об'єм колекції на
- * етапі запиту до БД, а саме - добавити фільтр.
- */
 ?>
 
 <table>
+
     <tr>
-        <th class="entity-id">Entity Id</th>
-        <th class="fruit-name">Fruit Name</th>
-        <th class="color-id">Color Id</th>
-        <th class="description">Description</th>
-        <th class="weight">Weight</th>
-        <th class="taste">Taste</th>
-        <th class="price">Price</th>
-        <th class="created-at">Created At</th>
-        <th class="link">Link</th>
+        <th class="entity-id">
+            <?= __("Entity Id"); ?>
+        </th>
+        <th class="fruit-name">
+            <?= __("Fruit Name"); ?>
+        </th>
+        <th class="color-id">
+            <?= __("Color Id"); ?>
+        </th>
+        <th class="description">
+            <?= __("Description"); ?>
+        </th>
+        <th class="weight">
+            <?= __("Weight"); ?>
+        </th>
+        <th class="taste">
+            <?= __("Taste"); ?>
+        </th>
+        <th class="price">
+            <?= __("Price"); ?>
+        </th>
+        <th class="created-at">
+            <?= __("Created At"); ?>
+        </th>
+        <th class="link">
+            <?= __("Link"); ?>
+        </th>
     </tr>
+
     <?php if (!empty($fruits)): ?>
+
         <?php foreach ($fruits as $fruit): ?>
-                    <tr>
-                        <td><?php echo $fruit->getId() ?></td>
-                        <td><?php echo $fruit->getFruitName() ?></td>
-                        <td><?php echo $fruit->getColorId() ?></td>
-                        <td><?php echo $fruit->getDescription() ?></td>
-                        <td><?php echo $fruit->getWeight() ?></td>
-                        <td><?php echo $fruit->getTaste() ?></td>
-                        <td><?php echo $fruit->getPrice() ?></td>
-                        <td><?php echo $fruit->getCreatedAt() ?></td>
-                        <td>
-                            <?php
-                            /**
-                             * Тут можна і без виносу в окрему змінну
-                             */
-                            $href = $block->getUrl('exam_route');
-                            ?>
-                            <a  href="<?= $href ?>">
-                                <?= __('Go Back'); ?>
-                            </a>
-                        </td>
-                      </tr>
+            <tr>
+                <td>
+                    <?= $fruit->getId(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getFruitName(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getColorId(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getDescription(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getWeight(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getTaste(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getPrice(); ?>
+                </td>
+                <td>
+                    <?= $fruit->getCreatedAt(); ?>
+                </td>
+                <td>
+                    <a  href="<?= $block->getUrl('exam_route'); ?>">
+                        <?= __('Go Back'); ?>
+                    </a>
+                </td>
+            </tr>
         <?php endforeach; ?>
+
     <?php else: ?>
         <div class="message">
-            <h1 class="message-error error message"><?= __("There are no fruits found.") ?></h1>
+            <h1 class="message-error error message">
+                <?= __("There are no fruits found."); ?>
+            </h1>
         </div>
+
     <?php endif; ?>
+
 </table>
